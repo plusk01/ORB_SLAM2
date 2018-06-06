@@ -327,7 +327,7 @@ void System::Shutdown()
 {
     if (is_save_map)
         SaveMap(mapfile);
-    
+
     mpLocalMapper->RequestFinish();
     mpLoopCloser->RequestFinish();
     if(mpViewer)
@@ -516,6 +516,13 @@ vector<cv::KeyPoint> System::GetTrackedKeyPointsUn()
 {
     unique_lock<mutex> lock(mMutexState);
     return mTrackedKeyPointsUn;
+}
+
+cv::Mat System::GetTrackingFrame()
+{
+    // return the frame with tracking info for caller
+    cv::Mat im = mpFrameDrawer->DrawFrame();
+    return im;
 }
 
 void System::SaveMap(const string &filename)
