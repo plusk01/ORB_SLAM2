@@ -535,7 +535,9 @@ void System::SaveMap(const string &filename)
     }
     cout << "Saving Mapfile: " << mapfile << std::flush;
     boost::archive::binary_oarchive oa(out, boost::archive::no_header);
+    std::cout << "Saving mpMap" << std::endl;
     oa << mpMap;
+    std::cout << "Saving mpKeyFrameDatabase" << std::endl;
     oa << mpKeyFrameDatabase;
     cout << " ...done" << std::endl;
     out.close();
